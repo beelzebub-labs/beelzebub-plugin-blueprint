@@ -4,4 +4,4 @@ module: github.com/beelzebub-labs/beelzebub-plugin-blueprint
 entrypoint: .
 description: Minimal hello demon command plugin blueprint
 author: Beelzebub Labs
-min-core-version: v3.0.0
+min-core-version: v3.8.0

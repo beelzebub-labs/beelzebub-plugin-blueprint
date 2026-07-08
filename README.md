@@ -12,19 +12,19 @@ installation flow introduced by `configurations/plugins.yaml`.
 - `hello_demon.go`: self-registering command plugin
 - `hello_demon_test.go`: small behavior test
 
-## Verify Locally
+## Install From GitHub
 
 From the Beelzebub repository:
 
 ```bash
-beelzebub plugin install file://../beelzebub-plugin-blueprint --no-build
+beelzebub plugin install https://github.com/beelzebub-labs/beelzebub-plugin-blueprint --no-build
 ```
 
 Or add it manually to `configurations/plugins.yaml`:
 
 ```yaml
 plugins:
-  - source: file://../beelzebub-plugin-blueprint
+  - source: https://github.com/beelzebub-labs/beelzebub-plugin-blueprint
 ```
 
 Then run:
@@ -35,6 +35,14 @@ beelzebub plugin list
 ```
 
 The installed plugin should appear as `hello-demon`.
+
+## Verify Local Changes
+
+For local development before pushing:
+
+```bash
+go test ./...
+```
 
 ## Use As A Template
 
