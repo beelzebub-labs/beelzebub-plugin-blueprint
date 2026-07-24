@@ -36,6 +36,46 @@ beelzebub plugin list
 
 The installed plugin should appear as `hello-demon`.
 
+## Configure a Beelzebub Service
+
+Installing the plugin only compiles and registers it. To invoke it, reference
+`hello-demon` from a service configuration.
+
+For example, add this route to
+`configurations/services/http-8080.yaml`:
+
+```yaml
+commands:
+  - regex: "^/hello-demon$"
+    plugin: "hello-demon"
+    statusCode: 200
+
+  - regex: ".*"
+    handler: "Unauthorized"
+    statusCode: 401
+```
+
+The plugin route must appear before catch-all routes because Beelzebub uses the
+first matching command.
+
+Restart the runtime:
+```
+docker compose restart beelzebub
+```
+
+Then invoke it:
+```
+curl http://localhost:8080/hello-demon
+```
+
+Expected response:
+```
+hello demon: received "Method: GET, RequestURI: /hello-demon, Body: " over http
+```
+
+The same command plugin can also be referenced by SSH, TCP, or TELNET service
+configurations.
+
 ## Verify Local Changes
 
 For local development before pushing:
